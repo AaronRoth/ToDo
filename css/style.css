@@ -1,0 +1,122 @@
+#add-button {
+  color: #dd2200;
+  cursor: pointer;
+  float: right;
+  font-family: 'Hammersmith One', 'Helvetica Neue', sans-serif;
+  font-size: 14pt;
+  margin: 10px 8px 0px 0px;
+}
+
+#add-button:hover {
+  color: #ffffff;
+}
+
+#all-content {
+  margin: 20px auto 0px auto;
+  width: 800px;
+}
+
+body {
+	background-color: #ffffff;
+	font-family: 'Helvetica Neue', sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+.delete-button {
+  background-color: #d4d4d4;
+  cursor: pointer;
+  display: none;
+  float: right;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12pt;
+  padding: 0px 5px 3px 5px;
+  text-align: center;
+}
+
+.delete-button:hover {
+  background-color: #c3c3c3;
+}
+
+#form-title {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 25pt;
+  margin: 0px;
+}
+
+#header {
+  background-color: #a1a1a1;
+  height: 40px;
+}
+
+#hidden-form {
+  display: none;
+}
+
+.priority {
+  display: none;
+}
+
+#submit-task {
+  background-color: #d4d4d4;
+	cursor: pointer;
+	float: right;
+	font-family: 'Helvetica Neue', sans-serif;
+	font-size: 12pt;
+	padding: 3px 6px 4px 6px;
+	text-align: center;
+}
+
+#submit-task:hover {
+  background-color: #c3c3c3;
+}
+
+.task-class {
+  background-color: #f5f5f5;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12pt;
+  margin: 0px;
+  padding: 6px 7px 9px 5px;
+  width: 789px;
+}
+
+.task-class-alt {
+  background-color: #e5e5e5;
+}
+
+#task-confirmation {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12pt;
+  margin: 10px;
+}
+
+#task-form {
+  height: 145px;
+  margin: 10px;
+  width: 520px;
+}
+
+#task-link {
+  text-decoration: none;
+}
+
+textarea {
+  background-color: #f8f8f8;
+  border: 1px solid #000000;
+	font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12pt;
+  height: 22px;
+  margin: 10px 0px 10px 0px;
+  outline: none;
+  padding: 10px 6px 6px 8px;
+  resize: none;
+  width: 504px;
+}
+
+#title {
+  color: #cc2000;
+  float: left;
+  font-family: 'Hammersmith One', 'Helvetica Neue', sans-serif;
+  font-size: 20pt;
+  margin: 6px 6px 0px 7px;
+}
