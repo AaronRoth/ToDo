@@ -10,12 +10,12 @@ $(document).ready(function() {
   
   // shows delete button on tasks
   $('.task-class').live('mouseover', function() {
-    $(this).children().first().attr('style', 'display: block');
+    $(this).children().first().next().attr('style', 'display: block');
   });
   
   // hides delete button on tasks
   $('.task-class').live('mouseout', function() {
-    $(this).children().first().attr('style', 'display: none');
+    $(this).children().first().next().attr('style', 'display: none');
   });
   
   // deletes task
@@ -38,15 +38,40 @@ $(document).ready(function() {
     'onComplete' : fancyboxCallback,
     'onCleanup' : deleteText
   });
+  
+  // jQuery UI sortable options
+  $('#list-area').sortable({
+    containment: 'document',
+    cursor: 'crosshair',
+    update: function(event, ui) {
+      var curr = ui.item;
+      var curr_priority = parseInt(curr.children().first().text());
+      var prev = curr.prev();
+      if (prev.length > 0) {
+        var prev_priority = parseInt(prev.children().first().text());
+      } else {
+        var prev_priority = -1;
+      }
+      
+      updateTasks(prev_priority, curr_priority);
+    }
+  });
 });
 
 // builds HTML task list from JSON
 function buildList(json) {
   var html = '';
   
+  var array = [];
   for(var i = 0; i < json.length; i++) {
-    html = '<div class=\'task-class\'>' + json[i]['task'] + '<div class=\'delete-button\'>x</div></div>' + html;
+    array[json[i]['priority']] = [json[i]['priority'], json[i]['task']];
   }
+  
+  for(var i = 0; i < array.length; i++) {
+    if(array[i] != undefined) {
+      html += '<div class=\'task-class\'><div class=\'priority\'>' + array[i][0] + '</div>' + array[i][1] + '<div class=\'delete-button\'>x</div></div>';
+    }
+  }  
   
   return html;
 }
@@ -108,6 +133,21 @@ function submitTask(text) {
     success: function(report) {
       $.fancybox.close();
       getTasks();
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+			('#list-area').append('<p>Ajax error: ' + errorThrown + '</p>');
+		}
+  });
+}
+
+// updates priorities in database after human sorting
+function updateTasks(prev_prior, curr_prior) {
+  $.ajax({
+    type: 'POST',
+    url: 'php/updatetasks.php',
+    data: {'prev': prev_prior, 'curr': curr_prior},
+    success: function(report) {
+      alert(report);
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
 			('#list-area').append('<p>Ajax error: ' + errorThrown + '</p>');

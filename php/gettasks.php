@@ -26,7 +26,7 @@
     {
       $jsontaskobject =
         "{" .
-          "\"priority\": \"$row[0]\"," .
+          "\"priority\": $row[0]," .
           "\"task\": \"$row[1]\"" .
         "}";
         

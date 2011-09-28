@@ -84,12 +84,6 @@ body {
   background-color: #e5e5e5;
 }
 
-#task-confirmation {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 12pt;
-  margin: 10px;
-}
-
 #task-form {
   height: 145px;
   margin: 10px;
