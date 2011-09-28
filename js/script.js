@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // populates current tasks when page loads
   getTasks();
   
   // submits task
@@ -18,7 +19,7 @@ $(document).ready(function() {
     $(this).children().first().next().attr('style', 'display: none');
   });
   
-  // deletes task
+  // calls the task delete function
   $('.delete-button').live('click', function(event) {
     var task = $(this).parent();
     var priority = parseInt(task.children().first().text());
@@ -59,20 +60,21 @@ $(document).ready(function() {
   });
 });
 
-// builds HTML task list from JSON
+// builds HTML task divs from JSON
 function buildList(json) {
   var html = '';
   
   var array = [];
-  for(var i = 0; i < json.length; i++) {
+  for (var i = 0; i < json.length; i++) {
     array[json[i]['priority']] = [json[i]['priority'], json[i]['task']];
   }
   
-  for(var i = 0; i < array.length; i++) {
-    if(array[i] != undefined) {
-      html += '<div class=\'task-class\'><div class=\'priority\'>' + array[i][0] + '</div>' + array[i][1] + '<div class=\'delete-button\'>x</div></div>';
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] != undefined) {
+      html += '<div class=\'task-class\'><div class=\'priority\'>' + array[i][0] + 
+        '</div>' + array[i][1] + '<div class=\'delete-button\'>x</div></div>';
     }
-  }  
+  }
   
   return html;
 }
@@ -95,13 +97,13 @@ function deleteTask(task, priority) {
   });
 }
 
-// delete text from textbox when submitted
+// deletes text from textbox when a task is submitted
 function deleteText() {
   var textbox_handle = $('#fancybox-content').children().first().children().first().children().first().next();
   textbox_handle.val('');
 }
 
-// focuses on textarea when loaded 
+// focuses on textarea when loaded with fancybox
 function fancyboxCallback() {
   var textbox_handle = $('#fancybox-content').children().first().children().first().children().first().next();
   textbox_handle.focus();
@@ -142,11 +144,11 @@ function submitTask(text) {
 }
 
 // updates priorities in database after human sorting
-function updateTasks(prev_prior, curr_prior) {
+function updateTasks(prev_priority, curr_priority) {
   $.ajax({
     type: 'POST',
     url: 'php/updatetasks.php',
-    data: {'prev': prev_prior, 'curr': curr_prior},
+    data: {'prev': prev_priority, 'curr': curr_priority},
     error: function(XMLHttpRequest, textStatus, errorThrown) {
 			('#list-area').append('<p>Ajax error: ' + errorThrown + '</p>');
 		}

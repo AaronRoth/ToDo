@@ -1,7 +1,7 @@
 <?php
-  try
+  try 
   {
-    // ---------- Connect to database and get resources and info ---------- //
+    // ----- Connect to database and get resources and info ----- //
     
     // open connection to database
     $dbh = new PDO("sqlite:../todolist.db");
@@ -12,17 +12,17 @@
     
     // get number of rows in table
     $row_count = 0;
-    foreach($result1 as $row)
+    foreach ($result1 as $row)
     {
       $row_count++;
     }
     
-    // ---------- Build JSON array of tasks ---------- //
+    // ----- Build JSON array of tasks ----- //
     
     $jsontasks = "[";
     $loop_count = 0;
     
-    foreach($result2 as $row)
+    foreach ($result2 as $row)
     {
       $jsontaskobject =
         "{" .
@@ -32,7 +32,7 @@
         
 			$loop_count++;
 			
-			if($loop_count < $row_count)
+			if ($loop_count < $row_count)
 			{
 			  $jsontasks .= $jsontaskobject . ",";
 			}
@@ -44,12 +44,13 @@
     
     $jsontasks .= "]";
     
+    // close database connection
     $dbh = null;
     
     echo $jsontasks;
   }
-  catch(PDOException $e)
+  catch (PDOException $exception)
   {
-    echo $e->getMessage();
+    echo $exception->getMessage();
   }
 ?>

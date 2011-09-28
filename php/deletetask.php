@@ -1,7 +1,7 @@
 <?php
   try
   {
-    // get index that needs to be deleted
+    // get priority of task to be deleted
     $priority = $_POST["priority"];
     
     // open connection to database
@@ -15,11 +15,9 @@
     
     // close database connection
     $dbh = null;
-    
-    echo "Your task has been deleted.";
   }
-  catch(PDOException $e)
+  catch(PDOException $exception)
   {
-    echo $e->getMessage();
+    echo $exception->getMessage();
   }
 ?>

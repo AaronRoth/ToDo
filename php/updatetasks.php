@@ -17,12 +17,11 @@
       $dbh->exec("UPDATE tasks SET priority = $prev_priority + 1 WHERE priority = $curr_priority");
     }
     
+    // close database connection
     $dbh = null;
-    
-    echo "Your tasks have been updated.";
   }
-  catch(PDOException $e)
+  catch (PDOException $exception)
   {
-    echo $e->getMessage();
+    echo $exception->getMessage();
   }
 ?>

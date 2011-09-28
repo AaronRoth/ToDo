@@ -1,22 +1,35 @@
 <?php
   try
   {
-    // get values to insert
-    $task = sqlite_escape_string($_POST["task"]);
+    // get text for new task
+    $task = $_POST["task"];
     
+    // replace any double quotes with single quotes
+	  $lookfor = array('"');
+	  $replacewith = "'";
+    $task = str_replace($lookfor, $replacewith, $task);
+    
+    // remove any newline and backslash characters
+	  $lookfor = array("\r\n", "\n", "\r", "\\");
+	  $replacewith = "** NO NEWLINE OR BACKSLASH CHARACTERS ALLOWED **";
+    $task = str_replace($lookfor, $replacewith, $task);
+    
+    // prepare text for database
+    $task = sqlite_escape_string($task);
+        
     // open connection to database
     $dbh = new PDO("sqlite:../todolist.db");
     
     // count the number of rows in database
     $result = $dbh->query("SELECT * FROM tasks");
     $row_count = 0;
-    foreach($result as $row)
+    foreach ($result as $row)
     {
       $row_count++;
     }
     
     // only update priorities if there is at least one task in the database
-    if($row_count > 0)
+    if ($row_count > 0)
     {
       // update all task priorities
       $dbh->exec("UPDATE tasks SET priority = priority + 1 WHERE priority >= 0");
@@ -27,11 +40,9 @@
     
     // close database connection
     $dbh = null;
-    
-    echo "Your task has been added.";
   }
-  catch(PDOException $e)
+  catch (PDOException $exception)
   {
-    echo $e->getMessage();
+    echo $eexception->getMessage();
   }
 ?>
