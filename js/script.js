@@ -8,6 +8,24 @@ $(document).ready(function() {
     submitTask(task_text);
   });
   
+  // shows delete button on tasks
+  $('.task-class').live('mouseover', function() {
+    $(this).children().first().attr('style', 'display: block');
+  });
+  
+  // hides delete button on tasks
+  $('.task-class').live('mouseout', function() {
+    $(this).children().first().attr('style', 'display: none');
+  });
+  
+  // deletes task
+  $('.delete-button').live('click', function() {
+    var task = $(this).parent();
+    var index = $('#list-area').children().index(task);
+    
+    deleteTask(task, index);
+  });
+  
   // FancyBox options
   $('#task-link').fancybox({
     'scrolling' : 'no',
@@ -31,6 +49,24 @@ function buildList(json) {
   }
   
   return html;
+}
+
+// deletes task from database
+function deleteTask(task, index) {
+  $.ajax({
+    type: 'POST',
+    url: 'php/deletetask.php',
+    data: {'index': index},
+    success: function(report) {
+      task.remove();
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+			$('#list-area').append('<p>Ajax error: ' + errorThrown + '</p>');
+		},
+		complete: function(jqXHR, textStatus) {
+		  getTasks();
+		}
+  });
 }
 
 // delete text from textbox when submitted
