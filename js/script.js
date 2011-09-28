@@ -54,6 +54,7 @@ $(document).ready(function() {
       }
       
       updateTasks(prev_priority, curr_priority);
+      setTimeout(function() {getTasks();}, 1000);
     }
   });
 });
