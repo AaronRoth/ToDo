@@ -2,32 +2,18 @@
   try
   {
     // get index that needs to be deleted
-    $index = $_POST["index"];
+    $priority = $_POST["priority"];
     
     // open connection to database
     $dbh = new PDO("sqlite:../todolist.db");
     
-    // get number of rows in table
-    $result = $dbh->query("SELECT * FROM tasks");
-    $row_count = 0;
-    foreach($result as $row)
-    {
-      $row_count++;
-    }
-    
     // delete task
-    $dbh->exec("DELETE FROM tasks WHERE priority = $index");
+    $dbh->exec("DELETE FROM tasks WHERE priority = $priority");
     
-    $start = $index + 1;
-    $end = $row_count;
+    // update the other tasks
+    $dbh->exec("UPDATE tasks SET priority = priority - 1 WHERE priority > $priority");
     
-    // increase priorities of every task (by 1) with a lower priority than deleted task
-    for($i = $start; $i < $end; $i++)
-    {
-      $new_prior = $i - 1;
-      $dbh->exec("UPDATE tasks SET priority = $new_prior WHERE priority = $i");
-    }
-        
+    // close database connection
     $dbh = null;
     
     echo "Your task has been deleted.";

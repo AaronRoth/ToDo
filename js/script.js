@@ -19,11 +19,11 @@ $(document).ready(function() {
   });
   
   // deletes task
-  $('.delete-button').live('click', function() {
+  $('.delete-button').live('click', function(event) {
     var task = $(this).parent();
-    var index = $('#list-area').children().index(task);
+    var priority = parseInt(task.children().first().text());
     
-    deleteTask(task, index);
+    deleteTask(task, priority);
   });
   
   // FancyBox options
@@ -78,11 +78,11 @@ function buildList(json) {
 }
 
 // deletes task from database
-function deleteTask(task, index) {
+function deleteTask(task, priority) {
   $.ajax({
     type: 'POST',
     url: 'php/deletetask.php',
-    data: {'index': index},
+    data: {'priority': priority},
     success: function(report) {
       task.remove();
     },
@@ -147,9 +147,6 @@ function updateTasks(prev_prior, curr_prior) {
     type: 'POST',
     url: 'php/updatetasks.php',
     data: {'prev': prev_prior, 'curr': curr_prior},
-    success: function(report) {
-      alert(report);
-    },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
 			('#list-area').append('<p>Ajax error: ' + errorThrown + '</p>');
 		}
