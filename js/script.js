@@ -55,7 +55,6 @@ $(document).ready(function() {
       }
       
       updateTasks(prev_priority, curr_priority);
-      setTimeout(function() {getTasks();}, 1000);
     }
   });
 });
@@ -123,9 +122,21 @@ function getTasks() {
 		},
     error: function(XMLHttpRequest, textStatus, errorThrown) {
 			$('#list-area').append('<p>Ajax error: ' + errorThrown + '</p>');
+		},
+		complete: function(jqXHR, textStatus) {
+		  stripeIt();
 		}
   });
 }
+
+// gives an html task list alternating colors
+function stripeIt() {
+  $('#list-area').children().each(function(index) {
+    if (index % 2 == 0) {
+      $(this).addClass('task-class-alt');
+    }
+  });
+};
 
 // submits task to database
 function submitTask(text) {
@@ -151,6 +162,9 @@ function updateTasks(prev_priority, curr_priority) {
     data: {'prev': prev_priority, 'curr': curr_priority},
     error: function(XMLHttpRequest, textStatus, errorThrown) {
 			('#list-area').append('<p>Ajax error: ' + errorThrown + '</p>');
+		},
+		complete: function(jqXHR, textStatus) {
+		  getTasks();
 		}
   });
 }
