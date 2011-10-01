@@ -66,13 +66,13 @@ function buildList(json) {
   
   var array = [];
   for (var i = 0; i < json.length; i++) {
-    array[json[i]['priority']] = [json[i]['priority'], json[i]['task']];
+    array[json[i]['priority']] = [json[i]['priority'], json[i]['task'], json[i]['poster']];
   }
   
   for (var i = 0; i < array.length; i++) {
     if (array[i] != undefined) {
       html += '<div class=\'task-class\'><div class=\'priority\'>' + array[i][0] + 
-        '</div>' + array[i][1] + '<div class=\'delete-button\'>x</div><div class=\'poster\'>Aaron</div></div>';
+        '</div>' + array[i][1] + '<div class=\'delete-button\'>x</div><div class=\'poster\'>' + array[i][2] + '</div></div>';
     }
   }
   

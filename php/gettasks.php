@@ -27,7 +27,8 @@
       $jsontaskobject =
         "{" .
           "\"priority\": $row[0]," .
-          "\"task\": \"$row[1]\"" .
+          "\"task\": \"$row[1]\"," .
+          "\"poster\": \"$row[2]\"" .
         "}";
         
 			$loop_count++;
