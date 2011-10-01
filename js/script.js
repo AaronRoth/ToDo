@@ -4,19 +4,20 @@ $(document).ready(function() {
   
   // submits task
   $('#submit-task').click(function() {
-    var task_text = $('textarea').val();
-    
+    var task_text = $('#task-text').val();
     submitTask(task_text);
   });
   
-  // shows delete button on tasks
+  // shows delete button on tasks and changes poster name color
   $('.task-class').live('mouseover', function() {
     $(this).children().first().next().attr('style', 'display: block');
+    $(this).children().first().next().next().attr('style', 'color: #b2b2b2');
   });
   
-  // hides delete button on tasks
+  // hides delete button on tasks and changes poster name color
   $('.task-class').live('mouseout', function() {
     $(this).children().first().next().attr('style', 'display: none');
+    $(this).children().first().next().next().attr('style', 'color: #999999');
   });
   
   // calls the task delete function
@@ -71,7 +72,7 @@ function buildList(json) {
   for (var i = 0; i < array.length; i++) {
     if (array[i] != undefined) {
       html += '<div class=\'task-class\'><div class=\'priority\'>' + array[i][0] + 
-        '</div>' + array[i][1] + '<div class=\'delete-button\'>x</div></div>';
+        '</div>' + array[i][1] + '<div class=\'delete-button\'>x</div><div class=\'poster\'>Aaron</div></div>';
     }
   }
   
