@@ -5,7 +5,8 @@ $(document).ready(function() {
   // submits task
   $('#submit-task').click(function() {
     var task_text = $('#task-text').val();
-    submitTask(task_text);
+    var poster_name = $('#poster-input').val();
+    submitTask(task_text, poster_name);
   });
   
   // shows delete button on tasks and changes poster name color
@@ -140,11 +141,11 @@ function stripeIt() {
 };
 
 // submits task to database
-function submitTask(text) {
+function submitTask(text, poster) {
   $.ajax({
     type: 'POST',
     url: 'php/posttask.php',
-    data: {'task': text},
+    data: {'task': text, 'poster': poster},
     success: function(report) {
       $.fancybox.close();
       getTasks();

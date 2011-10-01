@@ -3,6 +3,7 @@
   {
     // get text for new task
     $task = $_POST["task"];
+    $poster = $_POST["poster"];
     
     // replace any double quotes with single quotes
 	  $lookfor = array('"');
@@ -36,7 +37,7 @@
     }
     
     // insert values of new task
-    $dbh->exec("INSERT INTO tasks VALUES (0, '$task')");
+    $dbh->exec("INSERT INTO tasks VALUES (0, '$task', '$poster')");
     
     // close database connection
     $dbh = null;
