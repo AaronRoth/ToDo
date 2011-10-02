@@ -76,7 +76,7 @@ body {
   font-size: 12pt;
   height: 22px;
   margin: 10px 0px 10px 0px;
-  outline: none;
+  outline-color: #ff6600;
   padding: 6px;
   width: 506px;
 }
@@ -84,7 +84,7 @@ body {
 #poster-name {
   font-family: Verdana, sans-serif;
   font-size: 14pt;
-  margin: 0px;
+  margin: 10px 0px 0px 0px;
 }
 
 .priority {
@@ -97,8 +97,8 @@ body {
 	float: right;
 	font-family: Verdana, sans-serif;
 	font-size: 12pt;
-	margin-top: 2px;
-	padding: 2px 6px 4px 6px;
+	margin-top: 10px;
+	padding: 2px 6px 5px 6px;
 	text-align: center;
 }
 
@@ -123,8 +123,8 @@ body {
 }
 
 #task-form {
-  height: 180px;
-  margin: 10px;
+  height: 193px;
+  margin: 20px;
   width: 520px;
 }
 
@@ -139,7 +139,7 @@ body {
   font-size: 12pt;
   height: 22px;
   margin: 10px 0px 10px 0px;
-  outline: none;
+  outline-color: #ff6600;
   padding: 6px;
   width: 506px;
 }
