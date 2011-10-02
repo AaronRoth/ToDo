@@ -12,7 +12,7 @@ $(document).ready(function() {
   // shows delete button on tasks and changes poster name color
   $('.task-class').live('mouseover', function() {
     $(this).children().first().next().attr('style', 'display: block');
-    $(this).children().first().next().next().attr('style', 'color: #b2b2b2');
+    $(this).children().first().next().next().attr('style', 'color: #bababa');
   });
   
   // hides delete button on tasks and changes poster name color
@@ -100,8 +100,10 @@ function deleteTask(task, priority) {
 
 // deletes text from textbox when a task is submitted
 function deleteText() {
-  var textbox_handle = $('#fancybox-content').children().first().children().first().children().first().next();
-  textbox_handle.val('');
+  var text_handle = $('#fancybox-content').children().first().children().first().children().first().next();
+  var poster_handle = $('#fancybox-content').children().first().children().first().children().first().next().next().next();
+  text_handle.val('');
+  poster_handle.val('');
 }
 
 // focuses on textarea when loaded with fancybox

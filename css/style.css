@@ -76,7 +76,7 @@ body {
   font-size: 12pt;
   height: 22px;
   margin: 10px 0px 10px 0px;
-  outline-color: #ff6600;
+  outline: none;
   padding: 6px;
   width: 506px;
 }
@@ -139,7 +139,7 @@ body {
   font-size: 12pt;
   height: 22px;
   margin: 10px 0px 10px 0px;
-  outline-color: #ff6600;
+  outline: none;
   padding: 6px;
   width: 506px;
 }
